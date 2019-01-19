@@ -14,53 +14,50 @@ client.configure(feathers.authentication({
 const loginHTML = `
   <main class="login">
     <header class="heading">
-      <h1>Log in or Signup</h1>
+      <h1>Log in</h1>
+      <div class="errors"></div>
     </header>
     <form class="form">
       <label>
-        Email
-        <input placeholder="Email address" type="email" name="email">
+        <span class="visually-hidden">Email</span>
+        <input class="field" placeholder="Email address" type="email" name="email">
       </label>
       <label>
-        Password
-        <input placeholder="Password" type="password" name="password">
+        <span class="visually-hidden">Password</span>
+        <input class="field" placeholder="Password" type="password" name="password">
       </label>
 
-      <button id="login" type="button">Log in</button>
-      <button id="signup" type="button">Sign up and Log in</button>
+      <button id="login" class="button" type="button">Log in</button>
     </form>
   </main>
 `;
 
 // Chat
 const chatHTML = `
-  <main>
-    <header>
+  <main class="chat">
+    <header class="heading">
       <h2>Chat</h2>
     </header>
 
-    <section>
-      <aside>
-        <header>
-          <h3><span class="user-count">0</span> users</h3>
-        </header>
-        <ul class="user-list"></ul>
-        <footer>
-          <button id="logout">Log out</button>
-        </footer>
-      </aside>
+    <aside class="users">
+      <header class="heading">
+        <h3><span class="user-count">0</span> users</h3>
+      </header>
+      <ul class="user-list"></ul>
+      <footer>
+        <button class="button" id="logout">Log out</button>
+      </footer>
+    </aside>
 
-      <main>
-        <div class="chat"></div>
-        <form id="send-message">
-          <label>
-            <span class="visually-hidden">Message</span>
-            <input type=text"" name="text" id="messageInput">
-            <button id="sendMessage" type="submit">Send</button>
-          </label>
-        </form>
-      </main>
-    </section>
+    <section class="chat-messages" id="chatMessages"></section>
+    <form id="send-message" class="form">
+      <label>
+        <span class="visually-hidden">Message</span>
+        <input class="field" type=text"" name="text" id="messageInput">
+      </label>
+
+      <button class="button" id="sendMessage" type="submit">Send</button>
+    </form>
   </main>
 `;
 
@@ -159,7 +156,7 @@ const addUser = user => {
 // Add messages
 const addMessage = message => {
   const { user = {} } = message;
-  const chat = document.querySelector('.chat');
+  const chat = document.getElementById('chatMessages');
   
   // Sanitize messages - escape HTML chars
   const text = message.text
@@ -198,11 +195,6 @@ document.addEventListener('click', async ev => {
     case 'logout': {
       await client.logout();
       document.getElementById('app').innerHTML = loginHTML;
-      break;
-    }
-
-    case 'sendMessage': {
-      console.log('Sending message');
       break;
     }
   }

@@ -1,0 +1,175 @@
+:root {
+  --space: 1.25rem;
+  --half-space: calc(var(--space) / 2);
+  --double-space: calc(var(--space) / 2);
+  --letter-space: 0.125em;
+  --border-size: 3px;
+  --font: sans-serif;
+  --primary-color: hsl(205, 58%, 52%);
+  --secondary-color: var(--black);
+  --black: hsl(0, 0%, 13%);
+  --gray: hsl(0, 0%, 68%);
+  --light-gray: hsl(0, 0%, 87%);
+  --white: hsl(0, 0%, 98%);
+  --root-size: 18px;
+  --size-small: 0.8rem;
+  --size-1: 1rem;
+  --size-2: 1.24rem;
+  --size-3: 2.36rem;;
+}
+
+html { font-size: var(--root-size); }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font);
+}
+
+#app {
+  display: flex;
+  height: 100%;
+}
+
+/* Helpers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+}
+
+/* Heading */
+.heading {
+  padding: var(--space) 0;
+  margin-bottom: var(--space);
+}
+
+.heading > h1,
+.heading > h2,
+.heading > h3 {
+  margin: 0;
+  font-size: var(--size-1);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-space);
+}
+
+/* Button */
+.button {
+  --background: var(--primary-color);
+  --color: var(--white);
+  padding: var(--half-space) var(--space);
+  background: var(--background);
+  color: var(--color);
+  border: none;
+}
+
+.button:hover {
+  --background: var(--secondary-color);
+}
+
+/* Log in */
+.login {
+  display: flex;
+  flex-flow: column;
+  padding: var(--space);
+  margin: auto;
+}
+
+.login .heading {
+  text-align: center;
+}
+
+.login .form {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.login .form label {
+  flex: 1;
+}
+
+.login .form button {
+  flex: 100%;
+}
+
+/* Form */
+.form label {
+  --border-color: var(--light-gray);
+  display: flex;
+  flex-flow: column;
+  margin-bottom: var(--space);
+}
+
+.form label span {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-space);
+  font-size: var(--size-small);
+}
+
+.form label .field {
+  padding: var(--half-space);
+  border: none;
+  border-bottom: var(--border-size) solid var(--border-color);
+}
+
+.form label .field:focus,
+.form label .field:active {
+  --border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Chat */
+.chat {
+  --chat-height: 60vh;
+  flex: 1;
+  padding: var(--space);
+  display: grid;
+  grid-template-areas: "heading users" "chat users" "form form";
+  grid-template-columns: auto min-content;
+  grid-auto-rows: min-content;
+}
+
+.chat > header {
+  grid-area: heading;
+}
+
+.chat .users {
+  grid-area: users;
+  padding: var(--space);
+}
+
+.chat .chat-messages {
+  grid-area: chat;
+  overflow: auto;
+  height: var(--chat-height);
+}
+
+.chat-messages article {
+  background: var(--white);
+  margin: var(--half-space) 0;
+  padding: var(--space);
+}
+
+.chat .form {
+  grid-area: form;
+  margin-top: var(--space);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+}
+
+.chat .form label {
+  margin: 0;
+  flex: 1;
+}
+
+.chat .user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

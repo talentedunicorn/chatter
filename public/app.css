@@ -11,6 +11,7 @@
   --gray: hsl(0, 0%, 68%);
   --light-gray: hsl(0, 0%, 87%);
   --white: hsl(0, 0%, 98%);
+  --red: hsl(0, 43%, 52%);
   --root-size: 18px;
   --size-small: 0.8rem;
   --size-1: 1rem;
@@ -69,6 +70,20 @@ body {
 
 .button:hover {
   --background: var(--secondary-color);
+}
+
+/* Errors */
+.errors {
+  font-size: var(--size-small);
+  color: var(--red);
+}
+
+.errors:empty {
+  display: none;
+}
+
+.errors p {
+  margin: var(--half-space) 0;
 }
 
 /* Log in */

@@ -65,7 +65,9 @@ const chatHTML = `
 // Show login
 const showLogin = (error = {}) => {
   if (document.querySelectorAll('.login').length) {
-    document.querySelector('.heading').insertAdjacentHTML('beforeend', `<p>There was an error: ${error.message}</p>`);
+    const errorsContainer = document.querySelector('.heading .errors');
+    errorsContainer.innerHTML = '';
+    errorsContainer.insertAdjacentHTML('beforeend', `<p>There was an error: ${error.message}</p>`);
   } else {
     document.getElementById('app').innerHTML = loginHTML
     handleFormSubmit();
@@ -126,7 +128,7 @@ const login = async credentials => {
       await client.authenticate(payload);
     }
 
-    // Show chat after user logs in
+    // Show chat after log in
     showChat();
   } catch (error) {
     showLogin(error);
@@ -215,4 +217,5 @@ const handleFormSubmit = () => {
 client.service('messages').on('created', addMessage);
 client.service('users').on('created', addUser);
 
-login(); // Attempt to automatically log in
+// Attempt to automatically log in
+login();
